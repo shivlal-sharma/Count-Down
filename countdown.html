@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time CountDown</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            background: url('image/nature2.jpg') no-repeat center center/cover;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+        }
+
+        #endDate{
+            font-size: 2.5rem;
+            margin-top: 200px;
+            font-weight: bold;
+            background-color: black;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        #date{
+            display: flex;
+            margin-top: 25px;
+            font-size: 2.5rem;
+        }
+
+        .nowDate{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 5px;
+            font-weight: bold;
+        }
+
+        .time{
+            background-color: black;
+            width: 70px ;
+            height: 70px ;
+            text-align: center;
+            line-height: 70px;
+            border-radius: 10px;
+        }
+
+        .day{
+            background-color: black;
+            margin-top: 10px;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="endDate"></div>
+        <div id="date">
+            <div class="nowDate">
+                <div class="time"></div>
+                <div class="day">Days</div>
+            </div>
+            <div class="nowDate">
+                <div class="time"></div>
+                <div class="day">Hours</div>
+            </div>
+            <div class="nowDate">
+                <div class="time"></div>
+                <div class="day">Minutes</div>
+            </div>
+            <div class="nowDate">
+                <div class="time"></div>
+                <div class="day">Seconds</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let endDate = document.getElementById('endDate');
+        let time = document.querySelectorAll('.time');
+        endDate.textContent = "30 June 2025 00:00:00";
+
+        function clock(){
+            let end = new Date(endDate.textContent);
+            let now = new Date();
+            let dif = (end - now)/1000;
+            if(dif <=0){
+                return;
+            }
+            time[0].textContent = Math.floor(dif/3600/24);
+            time[1].textContent = Math.floor(dif/3600)%24;
+            time[2].textContent = Math.floor(dif/60)%60;
+            time[3].textContent = Math.floor(dif)%60;
+        }
+
+        setInterval(()=>{
+            clock()
+        },1000)
+    </script>
+</body>
+</html>
